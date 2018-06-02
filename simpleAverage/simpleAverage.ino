@@ -3,31 +3,28 @@ void setup() {
   Serial.begin(9600);
 }
 
-double a = 0.00, b = 0.00;
+double startTime = 0.00, endTime = 0.00;
 double iterations = 1.000;
-int sampleSize = 1000;
+int sampleSize[5] = {100, 200, 400, 800, 1000};
 
 void loop() {
-  // calculate the time taken by 'delay' function
-  a = micros();
-  delayMicroseconds(10);
-  a = micros() - a;
+  
+    for (int j = 0; j < sizeof(sampleSize)/sizeof(int); j++) {
+  
+      startTime = micros();   //time keeper
+  
+      for (int i = 0; i <= sampleSize[j]; i++) {
+        // calculate the time taken by 'delay' function
+        delayMicroseconds(100);
+      }
+  
+      endTime = micros();
+  
+      Serial.print(sampleSize[j]);
+      Serial.print("  |  ");
+      Serial.println((endTime - startTime) / sampleSize[j]);
+    }
+  
+  while (true);
 
-  b += a;
-
-  //  Serial.print(iterations);
-  //  Serial.print(" | ");
-  //  Serial.print(b);
-  //  Serial.print(" | ");
-  //  Serial.println(b / iterations);
-
-  iterations++;
-  if (iterations == sampleSize) {
-    Serial.print(iterations);
-    Serial.print(" | ");
-    Serial.print(b);
-    Serial.print(" | ");
-    Serial.println(b / iterations);
-    while (1);
-  }
 }
