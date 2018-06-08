@@ -1,12 +1,10 @@
 # executionTimeMeasurement
 
-### Straight Line Fitting
+All of these experiments are performed in accordance with the paper titled *"Accurate Measurement of Small Execution Times – Getting Around Measurement Errors"*, can be downloaded from [here](https://uwaterloo.ca/embedded-software-group/publications/accurate-measurement-small-execution-times-getting-around).
 
-This method gives the  result with the less number of repetition when compared to the previous methods namely differential method and averaging method.
+>This repository is mercurial in nature, and constantly getting updated with new results.
 
-As well this is more robust as this involves the finding best fit straight line whose slope defines the execution time.
-
-**Testing Hardware**
+**Test Hardware**
 
 For deriving following result I've used Arduino Nano, running at 16MHz crstal. The board is powered by USB from a computer.
 
@@ -16,9 +14,44 @@ For deriving following result I've used Arduino Nano, running at 16MHz crstal. T
 * Operating Voltage : 5V
 * Flash Memory : 32 KB of which 2 KB used by bootloader
 
-**Testing Function**
+**Test Function**
 
 The function used to do aforementioned test is the ```delayMicroseconds();``` in Arduino environment, which halts the execution for microsecond(s) value passed.
+
+>*Note: The testing hardware and function under the test is same, unless mentioned as the caption to the graph or method.*
+
+## Simple Average method
+
+This method is the conventional mitigation technique for minimizing the measurement errors. The method involves repeated number if execution or the fragment under test, say we have iterrated the measurement N times the the result is equal to total time calculated/N.
+
+The above mentioned statement can be vividly demonstrated in the following pseudocode.
+
+**Psuedocode**
+
+```
+repeat N time:
+  a = get_time();
+  delay(100us);
+  b = get_time();
+  totalElapsedTime += b - a;
+end repeat
+```
+
+Following are the result of the experiment,
+
+| Samples Taken | Avg. Execution Time   | Standard Deviation  |
+| -------------:|:---------------------:| -------------------:|
+| 100           | 104.36         | 1.89              |
+| 200           | 104.18              |   1.35               |
+| 400           | 104.09              |    0.96              |
+| 800           | 104.045                | 0.68                |
+| 1000          | 104.036                | 0.61                |
+
+## Straight Line Fitting
+
+This method gives the  result with the less number of repetition when compared to the previous methods namely differential method and averaging method.
+
+As well this is more robust as this involves the finding best fit straight line whose slope defines the execution time.
 
 **Pseudo Code**
 
