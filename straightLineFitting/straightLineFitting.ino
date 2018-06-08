@@ -1,7 +1,7 @@
 volatile double startTime = 0.00, endTime = 0.00;
 double iterations = 1.000, total = 0.00;
 int sampleSize[] = {100, 200, 400, 800, 1000};
-int samples = 1000;
+int samples = 5;
 
 void setup() {
   // put your setup code here, to run once:
