@@ -26,7 +26,7 @@ Following are the result of the measurement taken.
 
 **Sample Size = N = 5**
 
-![alt text](img/lineFittingN5.png "Logo Title Text 1")
+![alt text](img/lineFittingN5.png "N = 5")
 
 * Equation: y = 104x + 0
 * Slope: 104
